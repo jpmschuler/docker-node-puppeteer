@@ -11,10 +11,8 @@ RUN apt-get update && \
       libxtst6 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget google-chrome-unstable && \
     rm -rf /var/lib/apt/lists/*
 
-# Add user so we don't need --no-sandbox.
 RUN groupadd -r pptruser && useradd -r -g pptruser -G audio,video,staff pptruser \
     && mkdir -p /home/pptruser/Downloads \
     && chown -R pptruser:pptruser /home/pptruser
 
-# Run everything after as non-privileged user.
 USER pptruser
